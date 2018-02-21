@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#03af00</color>
+    <color name="primary_clop_color">#802f2f</color>
+    <color name="accent_clop_color">#bdaa34</color>
+    <color name="text_color_secondary">#000000</color>
 </resources>

@@ -11,8 +11,9 @@
         android:id="@+id/fini"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:background="@color/primary_clop_color"
         android:text="@string/finishBtn"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -22,6 +23,7 @@
         android:layout_height="454dp"
         android:choiceMode="multipleChoice"
         android:scrollbarStyle="outsideOverlay"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="8dp" />
 

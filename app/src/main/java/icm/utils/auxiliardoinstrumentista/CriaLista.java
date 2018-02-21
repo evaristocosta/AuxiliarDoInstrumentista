@@ -21,7 +21,7 @@ public class CriaLista extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cria_lista);
-
+        setTitle("Crie a Lista de Hinos");
 
         final ItemCustom adapter = new ItemCustom(textos, this);
         //final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, textos);
@@ -50,6 +50,12 @@ public class CriaLista extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        this.finish();
     }
 
     public void iniciarCulto(View view) {

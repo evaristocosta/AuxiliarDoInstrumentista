@@ -4,15 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_adi"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_adi_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.myTheme.TitleBar">
         <activity
-            android:name=".CriaLista"
-            android:label="@string/cria_activity"
-            android:theme="@style/AppTheme">
+            android:name=".CriaLista">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
 
