@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Auxiliar Do Instrumentista</string>
-    <string name="addBtn">Adicionar</string>
-    <string name="startBtn">Iniciar</string>
-    <string name="finishBtn">Finalizar</string>
-    <string name="cria_activity">Crie a Lista de Hinos</string>
-    <string name="culto_activity">Culto Iniciado</string>
-</resources>
