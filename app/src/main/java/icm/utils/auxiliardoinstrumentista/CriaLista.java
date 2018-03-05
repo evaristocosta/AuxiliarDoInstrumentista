@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.view.inputmethod.EditorInfo;
@@ -30,6 +31,7 @@ public class CriaLista extends AppCompatActivity{
         listaTextos.setAdapter(adapter);
 
         final EditText texto = findViewById(R.id.editText);
+
 
         Button add = findViewById(R.id.add);
         add.setOnClickListener(new OnClickListener() {

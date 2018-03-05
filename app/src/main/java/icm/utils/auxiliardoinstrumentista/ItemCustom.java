@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -53,7 +54,7 @@ public class ItemCustom extends BaseAdapter implements ListAdapter {
         listItemText.setText(lista.get(position));
 
         //Handle buttons and add onClickListeners
-        Button deleteBtn = view.findViewById(R.id.delete_btn);
+        ImageButton deleteBtn = view.findViewById(R.id.delete_btn);
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override

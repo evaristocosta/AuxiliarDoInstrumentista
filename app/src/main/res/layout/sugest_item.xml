@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<icm.utils.auxiliardoinstrumentista.CheckableLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<icm.utils.auxiliardoinstrumentista.CheckableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_alignParentRight="true"
+    android:gravity="center_vertical"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/list_item_sugest"
-        android:duplicateParentState="true"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:duplicateParentState="true"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textSize="20sp"
-        android:textColor="@color/hideable_text_color" />
+        android:textColor="@color/hideable_text_color"
+        android:textSize="20sp" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:duplicateParentState="true"

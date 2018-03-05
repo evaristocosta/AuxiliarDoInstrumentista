@@ -48,15 +48,13 @@
 
     <ListView
         android:id="@+id/listaTextosSugest"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:choiceMode="singleChoice"
         android:scrollbarStyle="outsideOverlay"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-    </ListView>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </android.support.constraint.ConstraintLayout>

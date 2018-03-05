@@ -23,11 +23,12 @@
         android:textSize="20sp"
         android:textColor="@color/hideable_text_color" />
 
-    <ImageView android:src="?android:listChoiceIndicatorMultiple"
-        android:duplicateParentState="true"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="16dp"
+        android:duplicateParentState="true"
+        android:src="?android:listChoiceIndicatorMultiple" />
 
 </icm.utils.auxiliardoinstrumentista.CheckableLinearLayout>
