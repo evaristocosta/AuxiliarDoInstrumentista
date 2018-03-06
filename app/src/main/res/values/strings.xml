@@ -8,4 +8,6 @@
     <string name="title_activity_culto_main">Culto Iniciado</string>
     <string name="action_settings">Settings</string>
     <string name="criar_hint">Digite o hino...</string>
+    <string name="sem_hinos">Adicione hinos para dar início ao culto</string>
+    <string name="delete_opt">Pressione e segure para remover sugestões</string>
 </resources>

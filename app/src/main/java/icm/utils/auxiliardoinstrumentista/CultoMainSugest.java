@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,11 +29,11 @@ public class CultoMainSugest extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab2_culto_main,container,false);
 
-        Toast.makeText(getActivity(), "Pressione e segure para remover sugestão", Toast.LENGTH_LONG).show();
-
         final SugestItemCustom adapter = new SugestItemCustom(textos, getActivity());
 
         ListView listaTextos = view.findViewById(R.id.listaTextosSugest);
+        TextView deleteOpt = view.findViewById(R.id.delete_opt);
+        listaTextos.setEmptyView(deleteOpt);
         listaTextos.setAdapter(adapter);
 
         final EditText texto = view.findViewById(R.id.editSugest);

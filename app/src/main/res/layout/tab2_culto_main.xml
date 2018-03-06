@@ -57,4 +57,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <TextView
+        android:id="@+id/delete_opt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="#4a000000"
+        android:textSize="15sp"
+        android:text="@string/delete_opt" />
+
 </android.support.constraint.ConstraintLayout>

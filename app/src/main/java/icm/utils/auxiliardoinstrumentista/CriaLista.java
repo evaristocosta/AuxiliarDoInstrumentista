@@ -28,7 +28,10 @@ public class CriaLista extends AppCompatActivity{
         final ItemCustom adapter = new ItemCustom(textos, this);
 
         ListView listaTextos = findViewById(R.id.listaTextos);
+        TextView emptyTexto = findViewById(R.id.empty);
+        listaTextos.setEmptyView(emptyTexto);
         listaTextos.setAdapter(adapter);
+
 
         final EditText texto = findViewById(R.id.editText);
 
