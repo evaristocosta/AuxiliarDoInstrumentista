@@ -19,6 +19,13 @@
         <activity
             android:name=".CultoMain"
             android:label="@string/title_activity_culto_main" />
+        <activity
+            android:name=".Sobre"
+            android:label="@string/sobre">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="icm.utils.auxiliardoinstrumentista.CriaLista" />
+        </activity>
     </application>
 
 </manifest>

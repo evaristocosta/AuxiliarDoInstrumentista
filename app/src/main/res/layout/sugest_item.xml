@@ -8,8 +8,7 @@
     android:minHeight="?android:listPreferredItemHeight"
     android:orientation="horizontal"
     android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:background="@drawable/background">
+    android:paddingRight="8dp">
 
     <TextView
         android:id="@+id/list_item_sugest"
@@ -27,6 +26,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:duplicateParentState="true"
-        android:src="?android:listChoiceIndicatorSingle" />
+        android:src="@drawable/background" />
 
 </icm.utils.auxiliardoinstrumentista.CheckableLinearLayout>

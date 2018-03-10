@@ -6,8 +6,28 @@
     <string name="cria_activity">Crie a Lista de Hinos</string>
     <string name="culto_activity">Culto Iniciado</string>
     <string name="title_activity_culto_main">Culto Iniciado</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Sobre</string>
     <string name="criar_hint">Digite o hino...</string>
     <string name="sem_hinos">Adicione hinos para dar início ao culto</string>
     <string name="delete_opt">Pressione e segure para remover sugestões</string>
+
+
+    <!-- SEÇÃO SOBRE -->
+    <string name="sobre">Sobre</string>
+
+    <string name="link">Links</string>
+    <string name="suges">Enviar sugestões para o desenvolvedor</string>
+    <string name="cod_font">Ver código-fonte no Github</string>
+
+    <string name="descr">Descrição</string>
+    <string name="sobre_msg">
+			Com intuito de ajudar instrumentistas e músicos de igrejas, focado nos Grupos de Louvor da
+			Igreja Cristã Maranata, o Auxiliar do Instrumentista visa a organização dos hinos que serão entoados em
+			determinado evento ou culto, evitando o esquecimento e ajudando a organização e localização dos músicos,
+			diminuindo a chance de erros. O aplicativo não tem qualquer vínculo oficial com a ICM e é livre, de código aberto.
+    </string>
+
+    <string name="desenvolv">Desenvolvedor</string>
+    <string name="img_cop">Direitos das imagens usadas</string>
+
 </resources>
