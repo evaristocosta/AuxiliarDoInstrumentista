@@ -1,7 +1,9 @@
 package icm.utils.auxiliardoinstrumentista;
 
 
+import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.view.ViewPager;
@@ -20,6 +22,8 @@ public class CultoMain extends AppCompatActivity {
     private SectionsPageAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
+
+    private AlertDialog voltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +62,24 @@ public class CultoMain extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed()
-    {
-        Toast botaoRetorno = Toast.makeText(this, "Opção inválida", Toast.LENGTH_SHORT);
-        botaoRetorno.show();
+    public void onBackPressed() {
+        AlertDialog.Builder construtor = new AlertDialog.Builder(this);
+        construtor.setTitle("Concluir culto");
+        construtor.setMessage("Deseja concluir o culto?");
+        construtor.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        construtor.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        voltar = construtor.create();
+        voltar.show();
     }
 }

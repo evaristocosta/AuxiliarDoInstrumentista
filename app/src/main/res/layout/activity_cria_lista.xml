@@ -59,8 +59,11 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         </ListView>
+    <!--
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <!--
                 <com.woxthebox.draglistview.DragListView
                     android:id="@+id/listaTextos"
                     android:layout_width="wrap_content"
@@ -69,7 +72,9 @@
                     app:layout_constraintBottom_toTopOf="@+id/start"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
-          -->
+
+        </FrameLayout>
+      -->
         <Button
             android:id="@+id/start"
             android:layout_width="match_parent"

@@ -19,7 +19,7 @@
     <style name="CardList">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <!--  <item name="android:background">?windowBackgroundColor</item>-->
+        <item name="android:background">#ffffff</item>
        <item name="android:orientation">vertical</item>
     </style>
 

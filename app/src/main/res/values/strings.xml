@@ -2,12 +2,12 @@
     <string name="app_name">Auxiliar Do Instrumentista</string>
     <string name="addBtn">Adicionar</string>
     <string name="startBtn">Iniciar</string>
-    <string name="finishBtn">Finalizar</string>
+    <string name="finishBtn">Concluir</string>
     <string name="cria_activity">Crie a Lista de Hinos</string>
     <string name="culto_activity">Culto Iniciado</string>
     <string name="title_activity_culto_main">Culto Iniciado</string>
     <string name="action_settings">Sobre</string>
-    <string name="criar_hint">Digite o hino...</string>
+    <string name="criar_hint">Digite o hino…</string>
     <string name="sem_hinos">Adicione hinos para dar início ao culto</string>
     <string name="delete_opt">Pressione e segure para remover sugestões</string>
 
