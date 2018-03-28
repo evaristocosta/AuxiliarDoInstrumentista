@@ -124,6 +124,9 @@
                 <TextView
                     style="@style/About.Item"
                     android:text="Pixel Perfect"/>
+                <TextView
+                    style="@style/About.Item"
+                    android:text="Zurb"/>
             </LinearLayout>
 
 

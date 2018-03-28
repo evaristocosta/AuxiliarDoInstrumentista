@@ -53,7 +53,7 @@ public class ItemCustom extends BaseAdapter implements ListAdapter {
         //Handle TextView and display string from your list
         TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
         listItemText.setText(lista.get(position));
-
+/*
         //Handle buttons and add onClickListeners
         ImageButton deleteBtn = view.findViewById(R.id.delete_btn);
 
@@ -65,7 +65,7 @@ public class ItemCustom extends BaseAdapter implements ListAdapter {
                 notifyDataSetChanged();
             }
         });
-
+*/
         return view;
     }
 }

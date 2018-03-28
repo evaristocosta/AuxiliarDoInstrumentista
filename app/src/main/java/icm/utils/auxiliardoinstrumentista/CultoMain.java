@@ -41,9 +41,6 @@ public class CultoMain extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        Chronometer krono = findViewById(R.id.kronos);
-        krono.start();
-
         final Button finish = findViewById(R.id.fini);
         finish.setOnClickListener(new View.OnClickListener() {
             @Override

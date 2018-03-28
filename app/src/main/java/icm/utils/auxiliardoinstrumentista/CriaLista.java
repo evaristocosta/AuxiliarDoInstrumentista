@@ -3,6 +3,9 @@ package icm.utils.auxiliardoinstrumentista;
 import android.content.Intent;
 import android.os.Bundle;
 import java.util.ArrayList;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
@@ -14,16 +17,16 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.view.KeyEvent;
-/*import com.woxthebox.draglistview.DragItem;
+import com.woxthebox.draglistview.DragItem;
 import com.woxthebox.draglistview.DragListView;
 import com.woxthebox.draglistview.swipe.ListSwipeHelper;
-import com.woxthebox.draglistview.swipe.ListSwipeItem;*/
+import com.woxthebox.draglistview.swipe.ListSwipeItem;
 
 public class CriaLista extends AppCompatActivity{
-    private ArrayList<String> textos = new ArrayList<>();
-    //private ArrayList<Pair<Long, String>> textos = new ArrayList<>();
-    //private Integer i = 0;
-    //private DragListView mDragListView;
+    //private ArrayList<String> textos = new ArrayList<>();
+    private ArrayList<Pair<Long, String>> textos_mv = new ArrayList<>();
+    private Integer i = 0;
+    private DragListView mDragListView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,21 +34,37 @@ public class CriaLista extends AppCompatActivity{
         setContentView(R.layout.activity_cria_lista);
         setTitle("Crie a Lista de Hinos");
 
-/*
-        textos.add(new Pair<>(1L, "hahaha"));
-        textos.add(new Pair<>(2L, "hahahaha"));
-        textos.add(new Pair<>(3L, "haha"));
+        textos_mv.add(new Pair<>(1L, "hahaha"));
+        textos_mv.add(new Pair<>(2L, "hahahaha"));
+        textos_mv.add(new Pair<>(3L, "haha"));
 
-        mDragListView = findViewById(R.id.listaTextos);
+        //final ItemCustom adapter = new ItemCustom(textos, this);
+        //final ItemCustom_mv adapter_mv = new ItemCustom_mv(textos_mv, this);
+
+        //ListView listaTextos = findViewById(R.id.listaTextos);
+        mDragListView = findViewById(R.id.listaTextos_mv);
         mDragListView.getRecyclerView().setVerticalScrollBarEnabled(true);
 
-*/
-        final ItemCustom adapter = new ItemCustom(textos, this);
+        //TextView emptyTexto = findViewById(R.id.empty);
 
-        ListView listaTextos = findViewById(R.id.listaTextos);
-        TextView emptyTexto = findViewById(R.id.empty);
-        listaTextos.setEmptyView(emptyTexto);
-        listaTextos.setAdapter(adapter);
+        //listaTextos.setEmptyView(emptyTexto);
+//        listaTextos.setAdapter(adapter);
+
+        mDragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
+            @Override
+            public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
+                if (swipedDirection == ListSwipeItem.SwipeDirection.LEFT) {
+                    Pair<Long, String> adapterItem = (Pair<Long, String>) item.getTag();
+                    int pos = mDragListView.getAdapter().getPositionForItem(adapterItem);
+                    mDragListView.getAdapter().removeItem(pos);
+                }
+            }
+        });
+
+        mDragListView.setLayoutManager(new LinearLayoutManager(this));
+        final ItemAdapter listAdapter = new ItemAdapter(textos_mv, R.layout.single_item_mv, R.id.drag_image, false);
+        mDragListView.setAdapter(listAdapter, true);
+        mDragListView.setCanDragHorizontally(false);
 
         final EditText texto = findViewById(R.id.editText);
 
@@ -58,11 +77,14 @@ public class CriaLista extends AppCompatActivity{
                     texto.setText("");
                     texto.findFocus();
 
-                    textos.add(hino);
-                    //textos.add(new Pair<>((long) i, hino));
+//                    textos_mv.add(hino);
+                    textos_mv.add(new Pair<>((long) i, hino));
 
-                    adapter.notifyDataSetChanged();
-                    //i += 1;
+                    //se add nao funfar, try
+                    //listAdapter.setItemList(textos_mv);
+
+                    listAdapter.notifyDataSetChanged();
+                    i += 1;
                 } else {
                     Toast.makeText(CriaLista.this, "Digite o número ou nome do hino", Toast.LENGTH_SHORT).show();
                 }
@@ -79,11 +101,11 @@ public class CriaLista extends AppCompatActivity{
                         texto.setText("");
                         texto.findFocus();
 
-                        textos.add(hino);
-                        //textos.add(new Pair<>((long) i, hino));
+//                        textos.add(hino);
+                        textos_mv.add(new Pair<>((long) i, hino));
 
-                        adapter.notifyDataSetChanged();
-                        //i += 1;
+                        listAdapter.notifyDataSetChanged();
+                        i += 1;
                     } else {
                         Toast.makeText(CriaLista.this, "Digite o número ou nome do hino", Toast.LENGTH_SHORT).show();
                     }
@@ -92,26 +114,7 @@ public class CriaLista extends AppCompatActivity{
                 return false;
             }
         });
-
-/*
-        mDragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
-            @Override
-            public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
-                if (swipedDirection == ListSwipeItem.SwipeDirection.LEFT) {
-                    Pair<Long, String> adapterItem = (Pair<Long, String>) item.getTag();
-                    int pos = mDragListView.getAdapter().getPositionForItem(adapterItem);
-                    mDragListView.getAdapter().removeItem(pos);
-                }
-            }
-        });
-
-        mDragListView.setLayoutManager(new LinearLayoutManager(this));
-        ItemAdapter listAdapter = new ItemAdapter(textos, R.layout.single_item, R.id.delete_btn, false);
-        mDragListView.setAdapter(listAdapter, true);
-        mDragListView.setCanDragHorizontally(false);
-*/
     }
-
 
 
     @Override
@@ -139,15 +142,18 @@ public class CriaLista extends AppCompatActivity{
     }
 
     public void iniciarCulto(View view) {
-        if(textos.isEmpty()) {
+        if(textos_mv.isEmpty()) {
             Toast.makeText(CriaLista.this, "Adicione pelo menos um hino", Toast.LENGTH_SHORT).show();
         }
         else {
             Intent iniciar = new Intent(this, CultoMain.class);
-            iniciar.putStringArrayListExtra("listaDeHinos", textos);
+            ArrayList<String> listaDeHinos = new ArrayList<>();
+            for (Pair<Long, String> copiador : textos_mv){
+                listaDeHinos.add(copiador.second);
+            }
+            iniciar.putStringArrayListExtra("listaDeHinos", listaDeHinos);
             startActivity(iniciar);
         }
     }
-
 }
 
