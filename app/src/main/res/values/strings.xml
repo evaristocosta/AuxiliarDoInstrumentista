@@ -12,6 +12,8 @@
     <string name="sem_hinos">Adicione hinos para dar início ao culto</string>
     <string name="delete_opt">Pressione e segure para remover sugestões</string>
 
+    <string name="remover">Remover item</string>
+
 
     <!-- SEÇÃO SOBRE -->
     <string name="sobre">Sobre</string>

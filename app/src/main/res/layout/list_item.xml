@@ -20,7 +20,6 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textSize="20sp"
         android:textColor="@color/hideable_text_color" />
 
     <ImageView

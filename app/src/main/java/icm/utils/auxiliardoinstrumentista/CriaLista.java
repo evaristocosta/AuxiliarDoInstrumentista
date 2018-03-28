@@ -23,7 +23,6 @@ import com.woxthebox.draglistview.swipe.ListSwipeHelper;
 import com.woxthebox.draglistview.swipe.ListSwipeItem;
 
 public class CriaLista extends AppCompatActivity{
-    //private ArrayList<String> textos = new ArrayList<>();
     private ArrayList<Pair<Long, String>> textos_mv = new ArrayList<>();
     private Integer i = 0;
     private DragListView mDragListView;
@@ -34,26 +33,14 @@ public class CriaLista extends AppCompatActivity{
         setContentView(R.layout.activity_cria_lista);
         setTitle("Crie a Lista de Hinos");
 
-        textos_mv.add(new Pair<>(1L, "hahaha"));
-        textos_mv.add(new Pair<>(2L, "hahahaha"));
-        textos_mv.add(new Pair<>(3L, "haha"));
-
-        //final ItemCustom adapter = new ItemCustom(textos, this);
-        //final ItemCustom_mv adapter_mv = new ItemCustom_mv(textos_mv, this);
-
-        //ListView listaTextos = findViewById(R.id.listaTextos);
         mDragListView = findViewById(R.id.listaTextos_mv);
         mDragListView.getRecyclerView().setVerticalScrollBarEnabled(true);
-
-        //TextView emptyTexto = findViewById(R.id.empty);
-
-        //listaTextos.setEmptyView(emptyTexto);
-//        listaTextos.setAdapter(adapter);
 
         mDragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
             @Override
             public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
-                if (swipedDirection == ListSwipeItem.SwipeDirection.LEFT) {
+                if (swipedDirection == ListSwipeItem.SwipeDirection.RIGHT ||
+                        swipedDirection == ListSwipeItem.SwipeDirection.LEFT ) {
                     Pair<Long, String> adapterItem = (Pair<Long, String>) item.getTag();
                     int pos = mDragListView.getAdapter().getPositionForItem(adapterItem);
                     mDragListView.getAdapter().removeItem(pos);
@@ -62,7 +49,8 @@ public class CriaLista extends AppCompatActivity{
         });
 
         mDragListView.setLayoutManager(new LinearLayoutManager(this));
-        final ItemAdapter listAdapter = new ItemAdapter(textos_mv, R.layout.single_item_mv, R.id.drag_image, false);
+        final ItemAdapter listAdapter = new ItemAdapter(textos_mv, R.layout.single_item_mv,
+                R.id.drag_image, false);
         mDragListView.setAdapter(listAdapter, true);
         mDragListView.setCanDragHorizontally(false);
 
@@ -77,11 +65,7 @@ public class CriaLista extends AppCompatActivity{
                     texto.setText("");
                     texto.findFocus();
 
-//                    textos_mv.add(hino);
                     textos_mv.add(new Pair<>((long) i, hino));
-
-                    //se add nao funfar, try
-                    //listAdapter.setItemList(textos_mv);
 
                     listAdapter.notifyDataSetChanged();
                     i += 1;
@@ -101,7 +85,6 @@ public class CriaLista extends AppCompatActivity{
                         texto.setText("");
                         texto.findFocus();
 
-//                        textos.add(hino);
                         textos_mv.add(new Pair<>((long) i, hino));
 
                         listAdapter.notifyDataSetChanged();
