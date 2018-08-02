@@ -3,6 +3,6 @@ Com intuito de ajudar instrumentistas e músicos de igrejas, focado nos Grupos d
 
 ![alt text](https://i.imgur.com/DUjx1n2.png)
 
-O desenvolvimento mais detalhado a cada atualização pode ser acompanhado [clicando aqui](https://lucascostaportfolio.wordpress.com/2017/12/21/auxiliardoinstrumentista/)
+O desenvolvimento mais detalhado a cada atualização pode ser acompanhado [clicando aqui](https://lucascostaportfolio.wordpress.com/2017/12/21/auxiliardoinstrumentista/).
 
 Problemas, sugestões e ideias, não exite em compartilhar!
