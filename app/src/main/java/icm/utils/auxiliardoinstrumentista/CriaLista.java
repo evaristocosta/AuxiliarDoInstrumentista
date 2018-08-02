@@ -1,11 +1,18 @@
 package icm.utils.auxiliardoinstrumentista;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v4.util.Pair;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
@@ -17,21 +24,54 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.view.KeyEvent;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 import com.woxthebox.draglistview.DragItem;
 import com.woxthebox.draglistview.DragListView;
 import com.woxthebox.draglistview.swipe.ListSwipeHelper;
 import com.woxthebox.draglistview.swipe.ListSwipeItem;
 
-public class CriaLista extends AppCompatActivity{
+public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.OnUpdateNeededListener{
     private ArrayList<Pair<Long, String>> textos_mv = new ArrayList<>();
     private Integer i = 0;
     private DragListView mDragListView;
+
+    private static final String TAG = CriaLista.class.getSimpleName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cria_lista);
         setTitle("Crie a Lista de Hinos");
+
+        final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+
+        Map<String, Object> remoteConfigDefaults = new HashMap();
+        remoteConfigDefaults.put(ForceUpdateChecker.KEY_UPDATE_REQUIRED, false);
+        remoteConfigDefaults.put(ForceUpdateChecker.KEY_CURRENT_VERSION, "1.0.0");
+        remoteConfigDefaults.put(ForceUpdateChecker.KEY_UPDATE_URL,
+                "https://lucascostaportfolio.wordpress.com/2017/12/21/auxiliardoinstrumentista/");
+
+        firebaseRemoteConfig.setDefaults(remoteConfigDefaults);
+        firebaseRemoteConfig.fetch(60) // fetch every minutes
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "remote config is fetched.");
+                            firebaseRemoteConfig.activateFetched();
+                        }
+                    }
+                });
+
+
+        ForceUpdateChecker.with(this).onUpdateNeeded(this).check();
+
+
 
         mDragListView = findViewById(R.id.listaTextos_mv);
         mDragListView.getRecyclerView().setVerticalScrollBarEnabled(true);
@@ -138,5 +178,36 @@ public class CriaLista extends AppCompatActivity{
             startActivity(iniciar);
         }
     }
+
+    // checagem de atualização
+    @Override
+    public void onUpdateNeeded(final String updateUrl) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Nova versão disponível!")
+                .setMessage("Uma nova versão, com melhorias e correções, foi disponibilizada.")
+                .setPositiveButton("Atualizar agora",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                redirectStore(updateUrl);
+                            }
+                        }).setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).create();
+
+        dialog.show();
+    }
+
+    private void redirectStore(String updateUrl) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(updateUrl));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
 }
 

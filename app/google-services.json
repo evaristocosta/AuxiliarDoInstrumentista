@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "932203623859-2plidm2554r0oh4g1dnn7j1lbul23uuu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "icm.utils.auxiliardoinstrumentista",
+            "certificate_hash": "f9c683889fb7e697735c3086902bad1eab2c91ff"
+          }
+        },
+        {
           "client_id": "932203623859-36m87spfnq8262tfteai6t01isupoi31.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932203623859-36m87spfnq8262tfteai6t01isupoi31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
