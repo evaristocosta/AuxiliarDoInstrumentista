@@ -1,5 +1,6 @@
 package icm.utils.auxiliardoinstrumentista;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -42,11 +44,12 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
 
     private static final String TAG = CriaLista.class.getSimpleName();
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cria_lista);
-        setTitle("Crie a Lista de Hinos");
+        setTitle(getString(R.string.cria_activity));
 
         final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
@@ -96,6 +99,36 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
 
         final EditText texto = findViewById(R.id.editText);
 
+
+        texto.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getRawX() >= (texto.getRight() - texto.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        String hino = texto.getText().toString();
+                        if (hino.length() > 0) {
+                            texto.setText("");
+                            texto.findFocus();
+
+                            textos_mv.add(new Pair<>((long) i, hino));
+
+                            listAdapter.notifyDataSetChanged();
+                            i += 1;
+                        } else {
+                            Toast.makeText(CriaLista.this, "Digite o número ou nome do hino", Toast.LENGTH_SHORT).show();
+                        }
+
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });
+
+/*
         Button add = findViewById(R.id.add);
         add.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
@@ -113,7 +146,9 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                     Toast.makeText(CriaLista.this, "Digite o número ou nome do hino", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
+
+
 
         texto.setOnKeyListener(new View.OnKeyListener() {
             @Override

@@ -57,8 +57,8 @@
 
         <ImageView
             android:id="@+id/drag_image"
-            android:layout_width="17dp"
-            android:layout_height="33dp"
+            android:layout_width="22dp"
+            android:layout_height="37dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/braille_six_dots" />

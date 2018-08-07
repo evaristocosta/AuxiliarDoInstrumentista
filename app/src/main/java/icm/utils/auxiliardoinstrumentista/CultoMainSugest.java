@@ -1,10 +1,12 @@
 package icm.utils.auxiliardoinstrumentista;
 
+import android.annotation.SuppressLint;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,6 +26,7 @@ public class CultoMainSugest extends Fragment {
     private static final String TAB = "CultoMainSugest";
     private ArrayList<String> textos = new ArrayList<>();
 
+    @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +41,32 @@ public class CultoMainSugest extends Fragment {
 
         final EditText texto = view.findViewById(R.id.editSugest);
 
+        texto.setOnTouchListener(new View.OnTouchListener() {
+             @Override
+             public boolean onTouch(View view, MotionEvent motionEvent) {
+                 final int DRAWABLE_RIGHT = 2;
+
+                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                     if (motionEvent.getRawX() >= (texto.getRight() - texto.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                         String hino = texto.getText().toString();
+                         if (hino.length() > 0) {
+                             texto.setText("");
+                             texto.findFocus();
+                             textos.add(hino);
+                             adapter.notifyDataSetChanged();
+                         } else {
+                             Toast.makeText(getActivity(), "Digite o número do hino", Toast.LENGTH_SHORT).show();
+                         }
+
+                         return true;
+
+                     }
+                 }
+                 return false;
+             }
+         });
+
+/*
         Button add = view.findViewById(R.id.addSugest);
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -52,7 +81,7 @@ public class CultoMainSugest extends Fragment {
                     Toast.makeText(getActivity(), "Digite o número do hino", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         texto.setOnKeyListener(new View.OnKeyListener() {
             @Override

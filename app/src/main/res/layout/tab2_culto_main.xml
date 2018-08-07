@@ -29,13 +29,14 @@
             android:ems="10"
             android:hint="@string/criar_hint"
             android:textColor="@android:color/black"
+            android:drawableRight="@drawable/add"
             app:layout_constraintEnd_toStartOf="@+id/button2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+<!--
         <Button
             android:id="@+id/addSugest"
-            android:layout_width="117dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -43,17 +44,19 @@
             android:layout_weight="1"
             android:text="@string/addBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
     </LinearLayout>
 
     <ListView
         android:id="@+id/listaTextosSugest"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
         android:choiceMode="singleChoice"
         android:scrollbarStyle="outsideOverlay"
         android:textSize="20sp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

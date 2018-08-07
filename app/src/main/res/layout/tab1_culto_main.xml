@@ -16,6 +16,8 @@
         android:choiceMode="multipleChoice"
         android:scrollbarStyle="outsideOverlay"
         android:textSize="20sp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

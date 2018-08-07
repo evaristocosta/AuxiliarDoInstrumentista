@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Auxiliar Do Instrumentista</string>
+    <string name="addBtn">Add</string>
+    <string name="startBtn">Start</string>
+    <string name="finishBtn">Fnish</string>
+    <string name="cria_activity">Create the Hymn List</string>
+    <string name="culto_activity">Worship Started</string>
+    <string name="title_activity_culto_main">Worship Started</string>
+    <string name="action_settings">About</string>
+    <string name="criar_hint">Enter the hymn…</string>
+    <string name="sem_hinos">Add hymns to start worship</string>
+    <string name="delete_opt">Press and hold to remove suggestions</string>
+    <string name="remover">Remove item</string>
+    <string name="sobre">About</string>
+    <string name="suges">Send suggestions to the developer</string>
+    <string name="cod_font">View source on Gitlab</string>
+    <string name="descr">Description</string>
+    <string name="link">Links</string>
+    <string name="app_name_splash">Auxiliar Do\\nInstrumentista</string>
+    <string name="sobre_msg">
+        In order to help instrumentalists and church musicians, focused on the Praise Groups of the
+        Maranatha Christian Church, the Instrumental Assistant aims at organizing the hymns that will
+        be sung in a certain event or worship, avoiding forgetting and helping the organization and location
+        of the musicians, reducing the chance of errors. The application has no official link with ICM and is free, open source.
+    </string>
+</resources>

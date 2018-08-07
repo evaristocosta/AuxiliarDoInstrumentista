@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
@@ -9,38 +8,46 @@
     android:fitsSystemWindows="true"
     tools:context="icm.utils.auxiliardoinstrumentista.CultoMain">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/appbar_padding_top"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </android.support.design.widget.AppBarLayout>
 
+        <Button
+            android:id="@+id/fini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_clop_color"
+            android:text="@string/finishBtn"
+            android:textColor="@android:color/white"
+            app:layout_anchor="@+id/container"
+            app:layout_anchorGravity="bottom|center"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    <Button
-        android:id="@+id/fini"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary_clop_color"
-        android:text="@string/finishBtn"
-        android:textColor="@android:color/white"
-        app:layout_anchor="@+id/container"
-        app:layout_anchorGravity="bottom|center"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
+        <android.support.v4.view.ViewPager
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toTopOf="@+id/fini"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar"
+            app:layout_constraintVertical_bias="0.0" />
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
