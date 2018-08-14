@@ -9,49 +9,61 @@
         android:roundIcon="@mipmap/ic_adi_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".SplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:label="@string/app_name_splash">
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CriaLista"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" />
         <activity
-            android:screenOrientation="portrait"
+            android:name=".CriaLista"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".CultoMain"
-            android:label="@string/title_activity_culto_main" />
+            android:label="@string/title_activity_culto_main"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Sobre"
-            android:label="@string/sobre">
+            android:label="@string/sobre"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="icm.utils.auxiliardoinstrumentista.CriaLista" />
+        </activity>
+        <activity
+            android:name=".Estatisticas"
+            android:label="@string/estatisticas"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="icm.utils.auxiliardoinstrumentista.CriaLista" />
         </activity>
 
-        <service
-            android:name=".MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".FirebaseIDService">
+        <service android:name=".FirebaseIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/primary_clop_color" />
+
+
     </application>
 
 </manifest>

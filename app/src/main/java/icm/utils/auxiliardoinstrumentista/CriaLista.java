@@ -7,12 +7,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v4.util.Pair;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -42,6 +46,8 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
     private Integer i = 0;
     private DragListView mDragListView;
 
+    private AutoCompleteTextView texto;
+
     private static final String TAG = CriaLista.class.getSimpleName();
 
     @SuppressLint("ClickableViewAccessibility")
@@ -50,6 +56,10 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cria_lista);
         setTitle(getString(R.string.cria_activity));
+
+        // ****************
+        // configurações do remote Firebase
+        // ****************
 
         final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
@@ -71,14 +81,17 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                     }
                 });
 
-
         ForceUpdateChecker.with(this).onUpdateNeeded(this).check();
 
 
+        // ****************
+        // woxthebox - configuração da draglist
+        // ****************
 
         mDragListView = findViewById(R.id.listaTextos_mv);
         mDragListView.getRecyclerView().setVerticalScrollBarEnabled(true);
 
+        // função de swipe pra deletar
         mDragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
             @Override
             public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
@@ -97,9 +110,16 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         mDragListView.setAdapter(listAdapter, true);
         mDragListView.setCanDragHorizontally(false);
 
-        final EditText texto = findViewById(R.id.editText);
 
+        // ****************
+        // configuração da barra de adição
+        // ****************
 
+        //final EditText texto = findViewById(R.id.editText);
+        texto = findViewById(R.id.autoComplete);
+        carregaDados();
+
+        // função do + no final do edittext
         texto.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -128,28 +148,7 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
             }
         });
 
-/*
-        Button add = findViewById(R.id.add);
-        add.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-
-                String hino = texto.getText().toString();
-                if (hino.length() > 0) {
-                    texto.setText("");
-                    texto.findFocus();
-
-                    textos_mv.add(new Pair<>((long) i, hino));
-
-                    listAdapter.notifyDataSetChanged();
-                    i += 1;
-                } else {
-                    Toast.makeText(CriaLista.this, "Digite o número ou nome do hino", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
-
-
-
+        // função do enter do teclado
         texto.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -172,14 +171,48 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                 return false;
             }
         });
+/*
+        // procedimendo de adição com busca
+        texto.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Procedimento semelhante ao Nova Lista
+            }
+        });
+*/
     }
 
+    // AutoLoad
+    private void carregaDados() {
+        List<HinosEstrutura> hinos = new ArrayList<>();
+        HinosBuscaAdaptador hinosBuscaAdaptador = new HinosBuscaAdaptador(getApplicationContext(), hinos);
+        texto.setThreshold(1);
+        texto.setAdapter(hinosBuscaAdaptador);
+    }
+
+    private void carregaDados2() {
+        HinosBD hinosBD = new HinosBD(getApplicationContext());
+        List<HinosEstrutura> hinos = hinosBD.iniciaHinos();
+        HinosBuscaAdaptador hinosBuscaAdaptador = new HinosBuscaAdaptador(getApplicationContext(), hinos);
+        texto.setThreshold(1);
+        texto.setAdapter(hinosBuscaAdaptador);
+    }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         this.finish();
     }
+
+
+    // ****************
+    // configuração das opções
+    // ****************
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -187,6 +220,7 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         return true;
     }
 
+    // casos de opções
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -194,10 +228,19 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                 Intent sobre = new Intent(this, Sobre.class);
                 startActivity(sobre);
                 return true;
+            case R.id.menu_estatisticas:
+                Intent estatistica = new Intent(this, Estatisticas.class);
+                startActivity(estatistica);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    // ****************
+    // mudança de atividade - culto
+    // ****************
 
     public void iniciarCulto(View view) {
         if(textos_mv.isEmpty()) {
@@ -214,7 +257,7 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         }
     }
 
-    // checagem de atualização
+    // checagem de atualização - Firebase
     @Override
     public void onUpdateNeeded(final String updateUrl) {
         AlertDialog dialog = new AlertDialog.Builder(this)
@@ -242,7 +285,5 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
-
 }
 

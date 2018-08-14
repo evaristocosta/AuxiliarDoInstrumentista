@@ -72,6 +72,9 @@
                     style="@style/CardHeader"
                     android:text="@string/link"
                     android:textColor="@color/title_clop_color"/>
+                <TextView
+                    style="@style/About.Item"
+                    android:text="@string/prob"/>
                 <Button
                     android:id="@+id/suges"
                     android:layout_height="wrap_content"
@@ -84,6 +87,17 @@
                     android:autoLink="email"
                     android:textAllCaps="false"/>
                 <Button
+                    android:id="@+id/atualizacao"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="left"
+                    android:textSize="16sp"
+                    android:textColor="#7b7b7b"
+                    android:background="@android:color/transparent"
+                    android:text="@string/atualizar"
+                    android:autoLink="web"
+                    android:textAllCaps="false"/>
+                <Button
                     android:id="@+id/cod_font"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -94,6 +108,17 @@
                     android:text="@string/cod_font"
                     android:autoLink="web"
                     android:textAllCaps="false"/>
+                <Button
+                    android:id="@+id/novaLista"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="left"
+                    android:textSize="16sp"
+                    android:textColor="#BEAB34"
+                    android:background="@android:color/transparent"
+                    android:text="@string/novaLista"
+                    android:autoLink="web"
+                    android:textAllCaps="false" />
             </LinearLayout>
 
             <LinearLayout

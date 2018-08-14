@@ -48,9 +48,27 @@ public class Sobre extends AppCompatActivity {
                 startActivity(sender);
             }
         });
-        /*TextView sobre = findViewById(R.id.sobreView);
-        sobre.setMovementMethod(new ScrollingMovementMethod());
-        sobre.setText(Html.fromHtml(getString(R.string.sobre_msg)));*/
+
+        Button atualizar = findViewById(R.id.atualizacao);
+        atualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browser = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://lucascostaportfolio.wordpress.com/2017/12/21/auxiliardoinstrumentista/"));
+                startActivity(browser);
+            }
+        });
+
+        Button novaLista = findViewById(R.id.novaLista);
+        novaLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browser = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://lucascostaportfolio.wordpress.com/2018/05/30/nova-lista-da-coletanea/"));
+                startActivity(browser);
+            }
+        });
+
     }
 
 }

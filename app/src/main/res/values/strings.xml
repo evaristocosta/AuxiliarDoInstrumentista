@@ -7,20 +7,26 @@
     <string name="cria_activity">Crie a Lista de Hinos</string>
     <string name="culto_activity">Culto Iniciado</string>
     <string name="title_activity_culto_main">Culto Iniciado</string>
-    <string name="action_settings">Sobre</string>
+
     <string name="criar_hint">Digite o hino…</string>
     <string name="sem_hinos">Adicione hinos para dar início ao culto</string>
     <string name="delete_opt">Pressione e segure para remover sugestões</string>
 
     <string name="remover">Remover item</string>
 
+    <string name="novo">Nº.n.: %d</string>
+    <string name="antigo">Nº.a.: %d</string>
+
 
     <!-- SEÇÃO SOBRE -->
     <string name="sobre">Sobre</string>
 
     <string name="link">Links</string>
+    <string name="prob">Encontrou algum erro? Tem novas ideias?</string>
     <string name="suges">Enviar sugestões para o desenvolvedor</string>
+    <string name="atualizar">Verificar últimas versões disponíveis</string>
     <string name="cod_font">Ver código-fonte no Gitlab</string>
+    <string name="novaLista">   Conheça a Nova Lista da Coletânea!</string>
 
     <string name="descr">Descrição</string>
     <string name="sobre_msg">
@@ -32,5 +38,8 @@
 
     <string name="desenvolv">Desenvolvedor</string>
     <string name="img_cop">Direitos das imagens usadas</string>
+
+    <!-- SEÇÃO ESTATÍSTICAS -->
+    <string name="estatisticas">Estatísticas</string>
 
 </resources>

@@ -4,6 +4,10 @@
     tools:context="icm.utils.auxiliardoinstrumentista.CriaLista">
     <item
         android:id="@+id/menu_settings"
-        android:title="@string/action_settings"
+        android:title="@string/sobre"
+        support:showAsAction="never" />
+    <item
+        android:id="@+id/menu_estatisticas"
+        android:title="@string/estatisticas"
         support:showAsAction="never" />
 </menu>
