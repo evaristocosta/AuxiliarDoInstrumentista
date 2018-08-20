@@ -80,7 +80,6 @@ public class HinosBuscaAdaptador extends ArrayAdapter<HinosEstrutura>{
                 filterResults.values = new ArrayList<HinosEstrutura>();
                 filterResults.count = 0;
             } else {
-
                 HinosBD hinosBD = new HinosBD(context);
                 List<HinosEstrutura> hinos = hinosBD.pesquisa(removeDiacriticalMarks(charSequence.toString()).toUpperCase());
                 filterResults.values = hinos;

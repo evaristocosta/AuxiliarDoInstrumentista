@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -171,34 +172,26 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                 return false;
             }
         });
-/*
-        // procedimendo de adição com busca
-        texto.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
+        texto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void onItemClick(AdapterView<?> adapterView, View view, int ident, long l) {
+                String hino = texto.getText().toString();
+                texto.setText("");
+                texto.findFocus();
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // Procedimento semelhante ao Nova Lista
+                textos_mv.add(new Pair<>((long) i, hino));
+
+                listAdapter.notifyDataSetChanged();
+                i += 1;
             }
         });
-*/
+
     }
 
     // AutoLoad
     private void carregaDados() {
         List<HinosEstrutura> hinos = new ArrayList<>();
-        HinosBuscaAdaptador hinosBuscaAdaptador = new HinosBuscaAdaptador(getApplicationContext(), hinos);
-        texto.setThreshold(1);
-        texto.setAdapter(hinosBuscaAdaptador);
-    }
-
-    private void carregaDados2() {
-        HinosBD hinosBD = new HinosBD(getApplicationContext());
-        List<HinosEstrutura> hinos = hinosBD.iniciaHinos();
         HinosBuscaAdaptador hinosBuscaAdaptador = new HinosBuscaAdaptador(getApplicationContext(), hinos);
         texto.setThreshold(1);
         texto.setAdapter(hinosBuscaAdaptador);
