@@ -17,7 +17,7 @@
         tools:targetApi="HONEYCOMB"
         android:showDividers="middle"
         android:divider="?android:dividerHorizontal">
-
+<!--
         <EditText
             android:id="@+id/editSugest"
             android:layout_width="wrap_content"
@@ -33,18 +33,23 @@
             app:layout_constraintEnd_toStartOf="@+id/button2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-<!--
-        <Button
-            android:id="@+id/addSugest"
+-->
+        <AutoCompleteTextView
+            android:id="@+id/editSugest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="@string/addBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
+            android:ems="10"
+            android:hint="@string/criar_hint"
+            android:textColor="@android:color/black"
+            android:drawableRight="@drawable/add"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </LinearLayout>
 
     <ListView

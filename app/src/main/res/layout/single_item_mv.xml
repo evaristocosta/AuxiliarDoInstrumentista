@@ -15,6 +15,7 @@
 -->
 <com.woxthebox.draglistview.swipe.ListSwipeItem xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="8dp"
@@ -24,6 +25,7 @@
     app:rightViewId="@+id/item_right"
     app:swipeViewId="@+id/item_layout">
 
+    <!-- EXEMPLO DE CONFIGURAÇÃO: SWIPE
     <TextView
         android:id="@+id/item_left"
         android:layout_width="match_parent"
@@ -45,8 +47,9 @@
         android:gravity="end|center_vertical"
         android:padding="8dp"
         android:drawableRight="@drawable/close2" />
+-->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@id/item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,20 +60,46 @@
 
         <ImageView
             android:id="@+id/drag_image"
-            android:layout_width="22dp"
-            android:layout_height="37dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:src="@drawable/braille_six_dots" />
+            android:layout_width="25dp"
+            android:layout_height="35dp"
+            android:src="@drawable/braille_six_dots2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/list_item_string"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:paddingLeft="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_vertical"
+            android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@color/text_color_secondary"
-            android:layout_height="wrap_content" />
+            app:layout_constraintEnd_toStartOf="@+id/deleteIcon"
+            app:layout_constraintStart_toEndOf="@+id/drag_image"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--
+        <Button
+            android:id="@+id/deleteIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp" />
 
-    </LinearLayout>
+        -->
+        <ImageButton
+            android:id="@+id/deleteIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:src="@drawable/empty2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </com.woxthebox.draglistview.swipe.ListSwipeItem>

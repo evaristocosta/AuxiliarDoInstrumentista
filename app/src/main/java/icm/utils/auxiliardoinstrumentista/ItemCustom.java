@@ -51,7 +51,7 @@ public class ItemCustom extends BaseAdapter implements ListAdapter {
         }
 
         //Handle TextView and display string from your list
-        TextView listItemText = (TextView) view.findViewById(R.id.list_item_string);
+        TextView listItemText = (TextView) view.findViewById(R.id.list_item_string2);
         listItemText.setText(lista.get(position));
 /*
         //Handle buttons and add onClickListeners

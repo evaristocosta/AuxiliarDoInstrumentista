@@ -26,13 +26,13 @@ public class SplashScreen extends AppCompatActivity {
         }, 500);
 
     }
-
+/*
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         finish();
         return true;
     }
-
+*/
     private void irCriaLista() {
         Intent intento = new Intent(this, CriaLista.class);
         startActivity(intento);

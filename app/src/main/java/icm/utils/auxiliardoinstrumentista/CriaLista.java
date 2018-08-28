@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
@@ -58,9 +59,9 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         setContentView(R.layout.activity_cria_lista);
         setTitle(getString(R.string.cria_activity));
 
-        // ****************
+
         // configurações do remote Firebase
-        // ****************
+        // ********************************
 
         final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
@@ -85,13 +86,13 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         ForceUpdateChecker.with(this).onUpdateNeeded(this).check();
 
 
-        // ****************
         // woxthebox - configuração da draglist
-        // ****************
+        // ********************************
 
         mDragListView = findViewById(R.id.listaTextos_mv);
         mDragListView.getRecyclerView().setVerticalScrollBarEnabled(true);
 
+/*
         // função de swipe pra deletar
         mDragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
             @Override
@@ -104,7 +105,7 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                 }
             }
         });
-
+*/
         mDragListView.setLayoutManager(new LinearLayoutManager(this));
         final ItemAdapter listAdapter = new ItemAdapter(textos_mv, R.layout.single_item_mv,
                 R.id.drag_image, false);
@@ -112,9 +113,10 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         mDragListView.setCanDragHorizontally(false);
 
 
-        // ****************
+
+
         // configuração da barra de adição
-        // ****************
+        // ********************************
 
         //final EditText texto = findViewById(R.id.editText);
         texto = findViewById(R.id.autoComplete);
@@ -203,9 +205,8 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
     }
 
 
-    // ****************
     // configuração das opções
-    // ****************
+    // ********************************
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -231,9 +232,8 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
     }
 
 
-    // ****************
     // mudança de atividade - culto
-    // ****************
+    // ********************************
 
     public void iniciarCulto(View view) {
         if(textos_mv.isEmpty()) {

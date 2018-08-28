@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lucas on 23/02/18.
@@ -25,6 +27,8 @@ import java.util.ArrayList;
 public class CultoMainSugest extends Fragment {
     private static final String TAB = "CultoMainSugest";
     private ArrayList<String> textos = new ArrayList<>();
+
+    private AutoCompleteTextView texto;
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
@@ -39,7 +43,9 @@ public class CultoMainSugest extends Fragment {
         listaTextos.setEmptyView(deleteOpt);
         listaTextos.setAdapter(adapter);
 
-        final EditText texto = view.findViewById(R.id.editSugest);
+        //final EditText texto = view.findViewById(R.id.editSugest);
+        texto = view.findViewById(R.id.editSugest);
+        carregaDados();
 
         texto.setOnTouchListener(new View.OnTouchListener() {
              @Override
@@ -66,23 +72,6 @@ public class CultoMainSugest extends Fragment {
              }
          });
 
-/*
-        Button add = view.findViewById(R.id.addSugest);
-        add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-                String hino = texto.getText().toString();
-                if (hino.length() > 0) {
-                    texto.setText("");
-                    texto.findFocus();
-                    textos.add(hino);
-                    adapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getActivity(), "Digite o número do hino", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
-
         texto.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -103,6 +92,17 @@ public class CultoMainSugest extends Fragment {
             }
         });
 
+        texto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String hino = texto.getText().toString();
+                texto.setText("");
+                texto.findFocus();
+                textos.add(hino);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         listaTextos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -113,5 +113,13 @@ public class CultoMainSugest extends Fragment {
         });
 
         return view;
+    }
+
+    // AutoLoad
+    private void carregaDados() {
+        List<HinosEstrutura> hinos = new ArrayList<>();
+        HinosBuscaAdaptador hinosBuscaAdaptador = new HinosBuscaAdaptador(getActivity(), hinos);
+        texto.setThreshold(1);
+        texto.setAdapter(hinosBuscaAdaptador);
     }
 }

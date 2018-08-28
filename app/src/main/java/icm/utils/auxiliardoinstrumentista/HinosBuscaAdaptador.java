@@ -81,7 +81,7 @@ public class HinosBuscaAdaptador extends ArrayAdapter<HinosEstrutura>{
                 filterResults.count = 0;
             } else {
                 HinosBD hinosBD = new HinosBD(context);
-                List<HinosEstrutura> hinos = hinosBD.pesquisa(removeDiacriticalMarks(charSequence.toString()).toUpperCase());
+                List<HinosEstrutura> hinos = hinosBD.pesquisa(charSequence.toString().toUpperCase());
                 filterResults.values = hinos;
                 filterResults.count = hinos.size();
             }
@@ -98,15 +98,7 @@ public class HinosBuscaAdaptador extends ArrayAdapter<HinosEstrutura>{
         @Override
         public CharSequence convertResultToString(Object resultValue) {
             HinosEstrutura hinosEstrutura = (HinosEstrutura) resultValue;
-            return hinosEstrutura.getNome();
-        }
-
-        // método de remoção de acentos
-        String removeDiacriticalMarks(String string) {
-            String newString = string.replaceAll(",","");
-
-            return Normalizer.normalize(newString, Normalizer.Form.NFD)
-                    .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+            return String.valueOf(hinosEstrutura.getNumNovo()) + " - " + hinosEstrutura.getNome();
         }
     }
 }

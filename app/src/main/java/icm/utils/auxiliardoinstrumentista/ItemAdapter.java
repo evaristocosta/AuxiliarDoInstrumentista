@@ -18,13 +18,20 @@ package icm.utils.auxiliardoinstrumentista;
 
 import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.woxthebox.draglistview.DragItemAdapter;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
+
+import static java.lang.Math.toIntExact;
 
 class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter.ViewHolder> {
 
@@ -46,11 +53,37 @@ class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         String text = mItemList.get(position).second;
         holder.mText.setText(text);
         holder.itemView.setTag(mItemList.get(position));
+
+
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    holder.button.setImageResource(R.drawable.close3);
+                    return true;
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    holder.button.setImageResource(R.drawable.empty2);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        holder.button.setTag(position);
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = (int) view.getTag();
+
+                mItemList.remove(pos);
+                ItemAdapter.this.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -60,20 +93,23 @@ class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter.ViewHo
 
     class ViewHolder extends DragItemAdapter.ViewHolder {
         TextView mText;
+        ImageButton button;
 
         ViewHolder(final View itemView) {
             super(itemView, mGrabHandleId, mDragOnLongPress);
             mText = (TextView) itemView.findViewById(R.id.list_item_string);
-        }
-/*
-        @Override
-        public void onItemClicked(View view) {
-            Toast.makeText(view.getContext(), "Item clicked", Toast.LENGTH_SHORT).show();
+
+            button = itemView.findViewById(R.id.deleteIcon);
         }
 
         @Override
+        public void onItemClicked(View view) {
+            //Toast.makeText(view.getContext(), "Item clicked", Toast.LENGTH_SHORT).show();
+        }
+/*
+        @Override
         public boolean onItemLongClicked(View view) {
-            Toast.makeText(view.getContext(), "Item long clicked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(view.getContext(), "Item long clicked", Toast.LENGTH_SHORT).show();
             return true;
         }
 */

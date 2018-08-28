@@ -152,6 +152,10 @@
                 <TextView
                     style="@style/About.Item"
                     android:text="Zurb"/>
+
+                <TextView
+                    style="@style/About.Item"
+                    android:text="Chanut"/>
             </LinearLayout>
 
 
