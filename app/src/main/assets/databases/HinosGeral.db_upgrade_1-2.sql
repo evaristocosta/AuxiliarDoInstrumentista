@@ -1,0 +1,1 @@
+insert into hinos (numNovo, numAntigo, nome) values (0, 0, 'AQUILO QUE FUI NÃO SOU MAIS');

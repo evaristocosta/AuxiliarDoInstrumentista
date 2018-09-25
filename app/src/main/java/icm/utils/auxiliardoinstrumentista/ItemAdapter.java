@@ -74,6 +74,7 @@ class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter.ViewHo
             }
         });
 
+
         holder.button.setTag(position);
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,7 @@ class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter.ViewHo
                 int pos = (int) view.getTag();
 
                 mItemList.remove(pos);
+                ListaDeHinos.lista.remove(pos);
                 ItemAdapter.this.notifyDataSetChanged();
             }
         });

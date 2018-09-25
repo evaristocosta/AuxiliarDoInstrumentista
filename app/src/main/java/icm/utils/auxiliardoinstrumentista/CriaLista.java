@@ -113,6 +113,16 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         mDragListView.setCanDragHorizontally(false);
 
 
+        // verificar se existe algo na lista
+        // ********************************
+
+        if (!ListaDeHinos.lista.isEmpty()) {
+            for (String hino : ListaDeHinos.lista) {
+                textos_mv.add(new Pair<>((long) i, hino));
+                listAdapter.notifyDataSetChanged();
+                i += 1;
+            }
+        }
 
 
         // configuração da barra de adição
@@ -134,6 +144,8 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                         if (hino.length() > 0) {
                             texto.setText("");
                             texto.findFocus();
+
+                            ListaDeHinos.lista.add(hino);
 
                             textos_mv.add(new Pair<>((long) i, hino));
 
@@ -162,6 +174,8 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                         texto.setText("");
                         texto.findFocus();
 
+                        ListaDeHinos.lista.add(hino);
+
                         textos_mv.add(new Pair<>((long) i, hino));
 
                         listAdapter.notifyDataSetChanged();
@@ -181,6 +195,8 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
                 String hino = texto.getText().toString();
                 texto.setText("");
                 texto.findFocus();
+
+                ListaDeHinos.lista.add(hino);
 
                 textos_mv.add(new Pair<>((long) i, hino));
 
@@ -241,11 +257,12 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         }
         else {
             Intent iniciar = new Intent(this, CultoMain.class);
-            ArrayList<String> listaDeHinos = new ArrayList<>();
+
+            ListaDeHinos.lista.clear();
             for (Pair<Long, String> copiador : textos_mv){
-                listaDeHinos.add(copiador.second);
+                ListaDeHinos.lista.add(copiador.second);
             }
-            iniciar.putStringArrayListExtra("listaDeHinos", listaDeHinos);
+
             startActivity(iniciar);
         }
     }
@@ -279,4 +296,3 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
         startActivity(intent);
     }
 }
-

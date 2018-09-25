@@ -14,7 +14,7 @@
 
     <string name="remover">Remover item</string>
 
-    <string name="novo">Nº.n.: %d</string>
+    <string name="novo">Nº: %d</string>
     <string name="antigo">Nº.a.: %d</string>
 
 
@@ -41,5 +41,6 @@
 
     <!-- SEÇÃO ESTATÍSTICAS -->
     <string name="estatisticas">Estatísticas</string>
+    <string name="limparDados">Limpar registro</string>
 
 </resources>

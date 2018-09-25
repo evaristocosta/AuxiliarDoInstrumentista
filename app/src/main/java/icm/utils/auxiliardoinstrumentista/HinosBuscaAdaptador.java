@@ -40,13 +40,16 @@ public class HinosBuscaAdaptador extends ArrayAdapter<HinosEstrutura>{
         TextView textViewNome = view.findViewById(R.id.textViewNome);
         textViewNome.setText(hino.getNome());
 
+        TextView textViewCategoria = view.findViewById(R.id.textViewCategoria);
+        textViewCategoria.setText(hino.getCategoria());
+/*
         TextView textViewNumAntigo = view.findViewById(R.id.textViewNumAntigo);
         if (hino.getNumAntigo() == 0) {
             textViewNumAntigo.setText(" - ");
         } else {
             textViewNumAntigo.setText(context.getString(R.string.antigo, hino.getNumAntigo()));
         }
-
+*/
         TextView textViewNumNovo = view.findViewById(R.id.textViewNumNovo);
         if (hino.getNumNovo() == 0) {
             textViewNumNovo.setText(" - ");

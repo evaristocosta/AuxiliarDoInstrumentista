@@ -14,14 +14,13 @@ import java.util.List;
 public class HinosBD extends SQLiteAssetHelper {
 
     private static final String DATABASE_NAME = "HinosGeral.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public HinosBD(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public List<HinosEstrutura> pesquisa(String keyword) {
-        long start = System.currentTimeMillis();
         List<HinosEstrutura> hinos = null;
         try {
             SQLiteDatabase db = getReadableDatabase();
@@ -29,12 +28,14 @@ public class HinosBD extends SQLiteAssetHelper {
                     BaseColumns._ID,
                     HinosContract.HinosRegistro.NUM_NOVO,
                     HinosContract.HinosRegistro.NUM_ANTIGO,
-                    HinosContract.HinosRegistro.NOME
+                    HinosContract.HinosRegistro.NOME,
+                    HinosContract.HinosRegistro.CATEGORIA
             };
 
             String selecao;
             if (TextUtils.isDigitsOnly(keyword)) {
-                selecao = HinosContract.HinosRegistro.NUM_ANTIGO + " LIKE ? OR " + HinosContract.HinosRegistro.NUM_NOVO + " LIKE ?";
+                selecao = HinosContract.HinosRegistro.NUM_NOVO + " LIKE ? OR " +
+                        HinosContract.HinosRegistro.NUM_ANTIGO + " LIKE ?";
             } else {
                 selecao = HinosContract.HinosRegistro.NOME + " LIKE ?";
             }
@@ -56,6 +57,7 @@ public class HinosBD extends SQLiteAssetHelper {
                 hino.setNumAntigo(cursor.getInt(cursor.getColumnIndexOrThrow(HinosContract.HinosRegistro.NUM_ANTIGO)));
                 hino.setNumNovo(cursor.getInt(cursor.getColumnIndexOrThrow(HinosContract.HinosRegistro.NUM_NOVO)));
                 hino.setNome(cursor.getString(cursor.getColumnIndexOrThrow(HinosContract.HinosRegistro.NOME)));
+                hino.setCategoria(cursor.getString(cursor.getColumnIndexOrThrow(HinosContract.HinosRegistro.CATEGORIA)));
 
                 hinos.add(hino);
             }
@@ -64,8 +66,7 @@ public class HinosBD extends SQLiteAssetHelper {
         }catch (Exception e) {
             hinos = null;
         }
-        long end = System.currentTimeMillis();
-        System.out.println("query: "+String.valueOf(end-start));
+
         return hinos;
     }
 }

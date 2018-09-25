@@ -7,6 +7,8 @@ public class HinosEstrutura {
     private Integer numAntigo;
     private Integer numNovo;
     private String nome;
+    private String categoria;
+    private Integer qtdCantado;
 
     public HinosEstrutura() {
     }
@@ -15,6 +17,14 @@ public class HinosEstrutura {
         this.numAntigo = numAntigo;
         this.numNovo = numNovo;
         this.nome = nome;
+    }
+
+    public HinosEstrutura(Integer numAntigo, Integer numNovo, String nome, String categoria, Integer qtdCantado) {
+        this.numAntigo = numAntigo;
+        this.numNovo = numNovo;
+        this.nome = nome;
+        this.categoria = categoria;
+        this.qtdCantado = qtdCantado;
     }
 
     public int getNumAntigo() {
@@ -39,5 +49,21 @@ public class HinosEstrutura {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Integer getQtdCantado() {
+        return qtdCantado;
+    }
+
+    public void setQtdCantado(Integer qtdCantado) {
+        this.qtdCantado = qtdCantado;
     }
 }

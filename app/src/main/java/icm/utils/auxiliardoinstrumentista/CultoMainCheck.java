@@ -29,25 +29,14 @@ public class CultoMainCheck extends Fragment{
     NotificationCompat.Builder notif;
     NotificationManager notifManager;
     ListView lv;
-
-    //recupera lista de hinos adicionados na activity anterior e passa pra string
-    public class hinosGet {
-        Intent reIntent = getActivity().getIntent();
-        ArrayList<String> hinos;
-        String[] hinosArray;
-        public hinosGet(){
-            hinos = reIntent.getStringArrayListExtra("listaDeHinos");
-            hinosArray = hinos.toArray(new String[0]);
-        }
-    }
+    String[] hinosArray = ListaDeHinos.lista.toArray(new String[0]);
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1_culto_main,container,false);
 
-        String[] notifyArray = new hinosGet().hinosArray;
-        int limit = notifyArray.length;
+        int limit = hinosArray.length;
         notifManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         lv = view.findViewById(R.id.list);
 
@@ -56,7 +45,7 @@ public class CultoMainCheck extends Fragment{
             String hinoNum = Integer.toString(limit)+"º hino da lista";
             notif = new NotificationCompat.Builder(getContext())
                     .setSmallIcon(R.drawable.shopping_notif)
-                    .setContentTitle(notifyArray[limit-1])
+                    .setContentTitle(hinosArray[limit-1])
                     .setContentText(hinoNum);
 
             notifManager.notify(limit, notif.build());
@@ -69,8 +58,6 @@ public class CultoMainCheck extends Fragment{
 
     //adaptador personalizado
     private class CheckAdaptor extends BaseAdapter {
-        String[] hinosArray = new hinosGet().hinosArray;
-
         @Override
         public int getCount() {
             return hinosArray.length;
