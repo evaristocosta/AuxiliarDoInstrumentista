@@ -58,11 +58,11 @@ public class CultoMain extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (String individual : ListaDeHinos.lista) {
+                /*for (String individual : ListaDeHinos.lista) {
                     db.execSQL("UPDATE " + hinosRegistro.TABLE_NAME + " SET " + hinosRegistro.QTD_CANTADO + " " +
                             "= " + hinosRegistro.QTD_CANTADO + "+1 WHERE " +
                             hinosRegistro.NOME + " = ?", new String[] {individual.substring(individual.indexOf('-')+2)});
-                }
+                }*/
 
                 finish();
             }

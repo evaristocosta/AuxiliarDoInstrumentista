@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="icm.utils.auxiliardoinstrumentista.CriaLista">
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/menu_sobre"
         android:title="@string/sobre"
         support:showAsAction="never" />
-    <item
+    <!--<item
         android:id="@+id/menu_estatisticas"
         android:title="@string/estatisticas"
-        support:showAsAction="never" />
+        support:showAsAction="never" />-->
 </menu>

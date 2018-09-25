@@ -14,34 +14,21 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v4.util.Pair;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.TextView;
 import android.view.KeyEvent;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
-import com.woxthebox.draglistview.DragItem;
 import com.woxthebox.draglistview.DragListView;
-import com.woxthebox.draglistview.swipe.ListSwipeHelper;
-import com.woxthebox.draglistview.swipe.ListSwipeItem;
 
 public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.OnUpdateNeededListener{
     private ArrayList<Pair<Long, String>> textos_mv = new ArrayList<>();
@@ -234,14 +221,14 @@ public class CriaLista extends AppCompatActivity implements ForceUpdateChecker.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_settings:
+            case R.id.menu_sobre:
                 Intent sobre = new Intent(this, Sobre.class);
                 startActivity(sobre);
                 return true;
-            case R.id.menu_estatisticas:
+/*            case R.id.menu_estatisticas:
                 Intent estatistica = new Intent(this, Estatisticas.class);
                 startActivity(estatistica);
-                return true;
+                return true;*/
         }
 
         return super.onOptionsItemSelected(item);
